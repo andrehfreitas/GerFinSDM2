@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.edu.ifsp.scl.gerfinsdm2.activity.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Saldo Total das Contas"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvTotalContas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="#74000000"
+        android:text="Saldo Total"
+        android:textAlignment="center"
+        android:textColor="#C80A2079"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnContas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contas"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categorias"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transacões \n (Cadastro/Consulta)"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

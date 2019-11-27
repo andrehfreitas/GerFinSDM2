@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity.Transacao.TransacaoDetalheActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        android:textSize="19dp"/>
+
+    <Spinner
+        android:id="@+id/spnDetalheTipoTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Tipo de transação"
+        android:entries="@array/tipo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conta"
+        android:textSize="19dp"/>
+
+    <Spinner
+        android:id="@+id/spnDetalheContaTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Tipo de transação"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categoria"
+        android:textSize="19dp"/>
+
+    <Spinner
+        android:id="@+id/spnDetalheCategoriaTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Categoria da transação"/>
+
+    <EditText
+        android:id="@+id/etDetalheDataTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="@string/data"
+        android:inputType="none"/>
+
+    <EditText
+        android:id="@+id/etDetalheValorTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Valor"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/etDetalheDescricaoTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="Descrição" />
+
+</LinearLayout>

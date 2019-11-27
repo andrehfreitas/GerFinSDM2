@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity.Conta.ContaDetalheActivity">
+
+    <EditText
+        android:id="@+id/etDetalheNomeConta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Nome da Conta"/>
+
+    <EditText
+        android:id="@+id/etDetalheSaldoConta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:hint="Saldo Inicial"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text='Atenção: Alteração do saldo da conta não permitida. Caso o saldo da conta esteja incorreto, cadastre uma transação na categoria "Ajuste de Saldo"' />
+</LinearLayout>

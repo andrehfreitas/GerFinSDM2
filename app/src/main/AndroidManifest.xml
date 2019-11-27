@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.edu.ifsp.scl.gerfinsdm2">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.Conta.ContaCadastroActivity"
+            android:label="@string/title_activity_cadastrocontas">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Conta.ContaListaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.Conta.ContaDetalheActivity"
+            android:label="@string/title_activity_detalhe_conta">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Conta.ContaListaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.Conta.ContaListaActivity"
+            android:label="@string/title_activity_listaconta"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".activity.Categoria.CategoriaCadastroActivity"
+            android:label="@string/title_activity_cadastrocategoria">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Categoria.CategoriaListaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.Categoria.CategoriaDetalheActivity"
+            android:label="@string/title_activity_detalhe_categoria">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Categoria.CategoriaListaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.Categoria.CategoriaListaActivity"
+            android:label="@string/title_activity_listacategoria"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".activity.Transacao.TransacaoCadastroActivity"
+            android:label="@string/title_activity_cadastrotransacao">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Transacao.TransacaoListaActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.Transacao.TransacaoDetalheActivity"
+            android:label="@string/title_activity_detalhe_transacao">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Transacao.TransacaoListaActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".activity.Transacao.TransacaoListaActivity"
+            android:label="@string/title_activity_listatransacao"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+    </application>
+
+</manifest>

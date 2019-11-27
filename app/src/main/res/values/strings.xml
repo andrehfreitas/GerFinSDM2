@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Gerenciador Financeiro SDM</string>
+
+    <string name="data">Data</string>
+
+    <string name="title_activity_listaconta">Minhas Contas</string>
+    <string name="title_activity_listacategoria">Categorias de Transações</string>
+    <string name="title_activity_listatransacao">Minhas Transações</string>
+
+    <string name="title_activity_cadastrocategoria">Cadastrar Categoria</string>
+    <string name="title_activity_cadastrocontas">Cadastrar Contas</string>
+    <string name="title_activity_cadastrotransacao">Cadastrar Transações</string>
+
+    <string name="title_activity_detalhe_conta">Atualizar/Excluir Contas</string>
+    <string name="title_activity_detalhe_categoria">Atualizar/Excluir Categorias</string>
+    <string name="title_activity_detalhe_transacao">Atualizar/Excluir Transação</string>
+
+</resources>

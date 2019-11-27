@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <Spinner
+        android:id="@+id/spnAlertaConta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data início"/>
+
+    <EditText
+        android:id="@+id/etAlertaDataInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_marginBottom="18dp"
+        android:hint="@string/data"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data fim"/>
+
+    <EditText
+        android:id="@+id/etAlertaDataFim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_marginBottom="18dp"
+        android:hint="@string/data"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Natureza da transação"/>
+
+    <RadioGroup
+        android:id="@+id/rgAlertaOpcao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp">
+
+        <RadioButton
+            android:id="@+id/rbCreditoDebito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crédito e Débito" />
+
+        <RadioButton
+            android:id="@+id/rbCredito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crédito" />
+
+        <RadioButton
+            android:id="@+id/rbDebito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Débito" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo da transação"/>
+
+    <Spinner
+        android:id="@+id/spnAlertaCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"/>
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar" />
+</LinearLayout>
