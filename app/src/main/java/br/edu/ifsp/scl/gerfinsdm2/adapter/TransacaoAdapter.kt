@@ -21,6 +21,11 @@ class TransacaoAdapter(private val context: Context,
                        private var transacaoList: List<Transacao>):
     RecyclerView.Adapter<TransacaoAdapter.TransacaoViewHolder>(){
 
+    fun notifyAdapter() {
+        transacaoList.sortedBy { it.data }
+        this.notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             TransacaoViewHolder{
         //Inflando view onde serão setados as informações das Transacões cadastradas

@@ -12,21 +12,27 @@ import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaListaActivity
 import br.edu.ifsp.scl.gerfinsdm2.activity.Transacao.TransacaoListaActivity
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
+import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
+import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var saldototal: TextView
     private lateinit var contas: MutableList<Conta>
-    private lateinit var dao: ContaSQLite
+    private lateinit var transacoes: MutableList<Transacao>
+    private lateinit var daoContas: ContaSQLite
+    private lateinit var daoTransacao: TransacaoSQLite
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        dao = ContaSQLite(this)
+        daoContas = ContaSQLite(this)
+        daoTransacao = TransacaoSQLite(this)
         saldototal = findViewById(R.id.tvTotalContas)
 
         var btnContas = findViewById<Button>(R.id.btnContas)
@@ -36,6 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         btnContas.setOnClickListener(this)
         btnCategorias.setOnClickListener(this)
         btnTransacoes.setOnClickListener(this)
+
     }
 
     override fun onResume() {
@@ -45,9 +52,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
 
         // Cálculo do somatório de saldos das contas e exibição na TextView
-        contas = dao.leiaConta()
+        contas = daoContas.leiaConta()
         val saldototal = contas.sumByDouble { it.saldoinicial.toDouble() }
         tvTotalContas.text = f.format(saldototal)
+
+
+        // Saldo total das Contas sem considerar transações futuras
+        val dataFormatada = SimpleDateFormat("dd/MM/yyy")
+        val dataInicial = Calendar.getInstance().time
+        transacoes = daoTransacao.leiaTransacao()
+
+        var saldo = 0.0
+        for (t in transacoes){
+            var dataTransacao: Date = dataFormatada.parse(t.data)
+            if (dataTransacao > dataInicial){
+                when (t.tipo) {
+                    "Crédito" -> saldo += t.valor.toDouble()
+                    "Débito"  -> saldo -= t.valor.toDouble()
+                }
+            }
+        }
+        val total = saldototal - saldo
+        tvSaldoReal.text = f.format(total)
+
     }
 
     // Tratamento de clique nos botões da MainActivity

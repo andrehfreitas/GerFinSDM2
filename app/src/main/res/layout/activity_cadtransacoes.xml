@@ -54,7 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:hint="@string/data"
-        android:inputType="none"/>
+        android:inputType="none"
+        android:focusableInTouchMode="false"/>
 
     <EditText
         android:id="@+id/etValorTransacao"

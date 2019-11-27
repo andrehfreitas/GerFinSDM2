@@ -1,6 +1,5 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity.Transacao
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -80,6 +79,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                 // Verificando se o usuário preencheu o valor da transação, único campo obrigatório
                 // sem valor default. Caso positivo realiza operação de inclusão de transação.
                 if (etValorTransacao.text.isNotEmpty()) {
+
                     var conta = 0
                     for (c in listaContas) {
                         if (c.nome == nomeConta) {
@@ -146,7 +146,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                                         "Débito" -> saldo -= valor.toDouble()
                                         "Crédito" -> saldo += valor.toDouble()
                                     }
-                                    saldo.toString()
+                                    c.saldoinicial = saldo.toString()
                                     daoConta.atualizaConta(c)
                                     break
                                 }
@@ -155,6 +155,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                         }
                     }
 
+                    TransacaoListaActivity.transacaoAdapter.notifyAdapter()
                     Toast.makeText(this, "Transação salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {

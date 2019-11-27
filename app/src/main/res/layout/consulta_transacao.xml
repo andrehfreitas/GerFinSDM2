@@ -23,7 +23,8 @@
         android:ems="10"
         android:inputType="date"
         android:layout_marginBottom="18dp"
-        android:hint="@string/data"/>
+        android:hint="@string/data"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -37,7 +38,8 @@
         android:ems="10"
         android:inputType="date"
         android:layout_marginBottom="18dp"
-        android:hint="@string/data"/>
+        android:hint="@string/data"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:layout_width="match_parent"

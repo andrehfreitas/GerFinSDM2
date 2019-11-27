@@ -26,7 +26,10 @@ import java.util.*
 
 class TransacaoListaActivity : AppCompatActivity() {
 
-    lateinit var transacaoAdapter: TransacaoAdapter
+    companion object{
+        lateinit var transacaoAdapter: TransacaoAdapter
+    }
+
     private lateinit var dao: TransacaoSQLite
     private lateinit var daoConta: ContaSQLite
     private lateinit var daoCategoria: CategoriaSQLite
@@ -71,6 +74,7 @@ class TransacaoListaActivity : AppCompatActivity() {
         recyclerViewTransacoes.adapter = transacaoAdapter
         recyclerViewTransacoes.layoutManager = LinearLayoutManager(this)
         recyclerViewTransacoes.smoothScrollToPosition(listaTransacoes.size)
+
     }
 
 
@@ -155,12 +159,8 @@ class TransacaoListaActivity : AppCompatActivity() {
                 this,
                 DatePickerDialog.OnDateSetListener { datePicker, mAno, mMes, mDia ->
                     inputData.setText(mDia.toString() + "/" + (mMes + 1).toString() + "/" + mAno.toString())
-                },
-                ano,
-                mes,
-                dia
+                }, ano, mes, dia
             )
-
             dpd.show()
         }
     }
