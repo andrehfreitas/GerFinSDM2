@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.scl.gerfinsdm2.R
-import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaDetalheActivity
 import br.edu.ifsp.scl.gerfinsdm2.activity.Transacao.TransacaoDetalheActivity
 import br.edu.ifsp.scl.gerfinsdm2.data.CategoriaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
@@ -20,11 +19,10 @@ import java.util.*
 class TransacaoAdapter(private val context: Context,
                        private var transacaoList: List<Transacao>):
     RecyclerView.Adapter<TransacaoAdapter.TransacaoViewHolder>(){
-
-    fun notifyAdapter() {
-        transacaoList.sortedBy { it.data }
-        this.notifyDataSetChanged()
+    companion object {
+        var transacoes: ArrayList<Transacao> = ArrayList()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             TransacaoViewHolder{
@@ -34,6 +32,13 @@ class TransacaoAdapter(private val context: Context,
     }
 
     override fun getItemCount() = transacaoList.size
+
+
+    fun notifyAdapter() {
+        transacoes.sortBy { it.data }
+        this.notifyDataSetChanged()
+    }
+
 
     override fun onBindViewHolder(holder: TransacaoViewHolder, position: Int){
         holder.bindView(transacaoList[position])

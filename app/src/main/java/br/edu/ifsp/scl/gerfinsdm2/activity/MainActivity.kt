@@ -10,9 +10,9 @@ import br.edu.ifsp.scl.gerfinsdm2.R
 import br.edu.ifsp.scl.gerfinsdm2.activity.Categoria.CategoriaListaActivity
 import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaListaActivity
 import br.edu.ifsp.scl.gerfinsdm2.activity.Transacao.TransacaoListaActivity
-import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
+import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.NumberFormat
@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onResume() {
         super.onResume()
-
-        //Criação de variável para formatação dos dados em moeda local
         val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
 
         // Cálculo do somatório de saldos das contas e exibição na TextView
@@ -57,15 +55,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         tvTotalContas.text = f.format(saldototal)
 
 
-        // Saldo total das Contas sem considerar transações futuras
-        val dataFormatada = SimpleDateFormat("dd/MM/yyy")
-        val dataInicial = Calendar.getInstance().time
-        transacoes = daoTransacao.leiaTransacao()
 
+        // Cálculo do saldo total das contas sem considerar transações futuras
+        val dataFormatada = SimpleDateFormat("dd/MM/yyy")
+        val hoje = Calendar.getInstance().time
+        transacoes = daoTransacao.leiaTransacao()
         var saldo = 0.0
         for (t in transacoes){
             var dataTransacao: Date = dataFormatada.parse(t.data)
-            if (dataTransacao > dataInicial){
+            if (dataTransacao > hoje){
                 when (t.tipo) {
                     "Crédito" -> saldo += t.valor.toDouble()
                     "Débito"  -> saldo -= t.valor.toDouble()
@@ -74,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         }
         val total = saldototal - saldo
         tvSaldoReal.text = f.format(total)
+
 
     }
 
@@ -85,4 +84,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
             R.id.btnTransacao -> startActivity(Intent(this, TransacaoListaActivity::class.java))
         }
     }
+
 }

@@ -93,7 +93,6 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         )
     }
 
-
     // Apaga transação pelo Id do BD
     override fun apagaTransacao(id: Int) {
         database.delete(TABLE_TRANSACAO, "$KEY_CODIGO_TRANSACAO = ?", arrayOf(id.toString()))
@@ -104,10 +103,11 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
     // Retorna todas transacoes do banco de dados
     override fun leiaTransacao(where: String): ArrayList<Transacao> {
         val listaTransacoes = arrayListOf<Transacao>()
-        val transacao: String = if (where == "") {
-            "SELECT * FROM $TABLE_TRANSACAO;"
+        var transacao = ""
+        if (where == "") {
+            transacao = "SELECT * FROM $TABLE_TRANSACAO;"
         } else {
-            "SELECT * FROM $TABLE_TRANSACAO WHERE $where"
+            transacao = "SELECT * FROM $TABLE_TRANSACAO WHERE $where;"
         }
         val transacaoCursor = database.rawQuery(transacao, null)
         while (transacaoCursor.moveToNext()) {

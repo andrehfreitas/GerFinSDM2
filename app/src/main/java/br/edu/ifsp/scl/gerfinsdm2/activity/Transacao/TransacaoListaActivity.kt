@@ -1,3 +1,4 @@
+
 package br.edu.ifsp.scl.gerfinsdm2.activity.Transacao
 
 import android.app.DatePickerDialog
@@ -165,10 +166,3 @@ class TransacaoListaActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
-
-
-
-

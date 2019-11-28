@@ -1,12 +1,10 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity.Transacao
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.gerfinsdm2.R
 import br.edu.ifsp.scl.gerfinsdm2.data.CategoriaSQLite
@@ -15,11 +13,8 @@ import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Categoria
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
-import kotlinx.android.synthetic.main.activity_cadtransacoes.*
-import kotlinx.android.synthetic.main.activity_detalhe_conta.*
 import kotlinx.android.synthetic.main.activity_detalhe_transacao.*
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -37,6 +32,9 @@ class TransacaoDetalheActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhe_transacao)
+
+        val c = Calendar.getInstance()
+        calendario(c, etDetalheDataTransacao)
 
         daoTransacao = TransacaoSQLite(this)
         daoConta = ContaSQLite(this)
@@ -186,6 +184,25 @@ class TransacaoDetalheActivity: AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    // Mostra um calendário na tela
+    fun calendario(c: Calendar, inputData: TextView) {
+
+        val ano = c.get(Calendar.YEAR)
+        val mes = c.get(Calendar.MONTH)
+        val dia = c.get(Calendar.DAY_OF_MONTH)
+
+        inputData.setOnClickListener {
+            val dpd = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { datePicker, mAno, mMes, mDia ->
+                    inputData.setText(mDia.toString() + "/" + (mMes + 1).toString() + "/" + mAno.toString())
+                }, ano, mes, dia
+            )
+            dpd.show()
+        }
     }
 
 }

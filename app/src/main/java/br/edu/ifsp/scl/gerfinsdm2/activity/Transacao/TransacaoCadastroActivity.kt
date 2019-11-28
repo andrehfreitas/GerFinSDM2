@@ -1,9 +1,11 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity.Transacao
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.gerfinsdm2.R
@@ -34,6 +36,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
         val df =  SimpleDateFormat("dd/MM/yyyy")
         val dataformatada = df.format(c.getTime())
         etDataTransacao.setText(dataformatada)
+        calendario(c, etDataTransacao)
 
         daoConta = ContaSQLite(this)
         daoCategorias = CategoriaSQLite(this)
@@ -151,11 +154,11 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                                     break
                                 }
                             }
+
                             dao.criaTransacao(novaTransacao)
                         }
                     }
 
-                    TransacaoListaActivity.transacaoAdapter.notifyAdapter()
                     Toast.makeText(this, "Transação salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
@@ -166,5 +169,23 @@ class TransacaoCadastroActivity : AppCompatActivity(){
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    // Mostra um calendário na tela
+    fun calendario(c: Calendar, inputData: TextView) {
+
+        val ano = c.get(Calendar.YEAR)
+        val mes = c.get(Calendar.MONTH)
+        val dia = c.get(Calendar.DAY_OF_MONTH)
+
+        inputData.setOnClickListener {
+            val dpd = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { datePicker, mAno, mMes, mDia ->
+                    inputData.setText(mDia.toString() + "/" + (mMes + 1).toString() + "/" + mAno.toString())
+                }, ano, mes, dia
+            )
+            dpd.show()
+        }
     }
 }
