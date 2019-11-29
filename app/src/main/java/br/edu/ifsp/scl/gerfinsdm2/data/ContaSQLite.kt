@@ -17,9 +17,9 @@ import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite.Constantes.TABLE_CONTA
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 
 
-class ContaSQLite (contexto: Context): ContaDAO {
+class ContaSQLite (context: Context): ContaDAO {
 
-    object Constantes{
+    object Constantes {
         val DATABASE_NAME = "gerfin4.db"
         val TABLE_CONTA = "contas"
         val KEY_CODIGO_CONTA = "codigo"
@@ -33,23 +33,23 @@ class ContaSQLite (contexto: Context): ContaDAO {
                 "${KEY_SALDOINICIAL_CONTA} TEXT NOT NULL);"
     }
 
+
     // Referência para o Banco de Dados
     val database: SQLiteDatabase
 
     init {
         // Criando ou abrindo e conectando-se ao Banco de Dados
-        database = contexto.openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null)
+        database = context.openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null)
 
         // Criando a tabela contas
         try {
             database.execSQL("PRAGMA foreign_keys=ON")
             database.execSQL(CREATE_TABLE_CONTA)
-        }
-
-        catch (e: SQLException){
-            Log.e(contexto.getString(R.string.app_name),"Problema com a criação da tabela!")
+        } catch (e: SQLException) {
+            Log.e(context.getString(R.string.app_name), "Problema com a criação da tabela!")
         }
     }
+
 
     // Inserção de dados das contas no banco de dados
     override fun criaConta(c: Conta) {
@@ -62,20 +62,22 @@ class ContaSQLite (contexto: Context): ContaDAO {
         database.insert(TABLE_CONTA, null, values)
     }
 
+
     // Atualização do nome da conta
     override fun atualizaConta(conta: Conta) {
         val values = ContentValues()
         values.put(KEY_NOME_CONTA, conta.nome)
         values.put(KEY_SALDOINICIAL_CONTA, conta.saldoinicial)
 
-        // Execução do comando para atualização
-        database.update(TABLE_CONTA, values,"$KEY_CODIGO_CONTA = ?", arrayOf(conta.id_.toString()))
+        // Execução do comando para atualização de dados
+        database.update(TABLE_CONTA, values, "$KEY_CODIGO_CONTA = ?", arrayOf(conta.id_.toString()))
     }
 
-    // Consulta contas do banco de dados
+
+    // Consulta que retorna todas as contas da tabela Conta
     override fun leiaConta(): ArrayList<Conta> {
         val listaContas = arrayListOf<Conta>()
-        val contas = "SELECT * FROM $TABLE_CONTA;"
+        val contas = "SELECT * FROM $TABLE_CONTA ORDER BY $KEY_NOME_CONTA;"
         val contasCursor = database.rawQuery(contas, null)
         while (contasCursor.moveToNext()) {
             listaContas.add(converteCursorConta(contasCursor))
@@ -83,9 +85,11 @@ class ContaSQLite (contexto: Context): ContaDAO {
         return listaContas
     }
 
+
+    // Consulta na tabela Contas e retorna o nome de todas as contas
     override fun leiaNomeConta(): ArrayList<String> {
         val listaNomesContas = arrayListOf<String>()
-        val contas = "SELECT * FROM $TABLE_CONTA;"
+        val contas = "SELECT * FROM $TABLE_CONTA ORDER BY $KEY_NOME_CONTA;"
         val contasCursor = database.rawQuery(contas, null)
         while (contasCursor.moveToNext()) {
             listaNomesContas.add(contasCursor.getString(1))
@@ -93,9 +97,12 @@ class ContaSQLite (contexto: Context): ContaDAO {
         return listaNomesContas
     }
 
+
     override fun leiaContaId(id: Int): Conta {
-        val contaCursor = database.query(true, TABLE_CONTA,null,
-            "$KEY_CODIGO_CONTA = ?",arrayOf("$id"),null, null,null,null)
+        val contaCursor = database.query(
+            true, TABLE_CONTA, null,
+            "$KEY_CODIGO_CONTA = ?", arrayOf("$id"), null, null, null, null
+        )
         return if (contaCursor.moveToFirst()) converteCursorConta(contaCursor)
         else Conta()
     }
@@ -105,6 +112,17 @@ class ContaSQLite (contexto: Context): ContaDAO {
         database.delete(TABLE_CONTA, "$KEY_CODIGO_CONTA = ?", arrayOf(id.toString()))
     }
 
+
+    override fun leiaContaNome(nome: String): Conta {
+        val contaCursor = database.query(
+            true, TABLE_CONTA, null,
+            "$KEY_NOME_CONTA = ?", arrayOf("$nome"), null, null, null, null
+        )
+        return if (contaCursor.moveToFirst()) converteCursorConta(contaCursor)
+        else Conta()
+    }
+
+
     // Converte uma linha do Cursor para uma objeto da classe Conta
     private fun converteCursorConta(cursor: Cursor): Conta {
         return Conta(
@@ -112,12 +130,5 @@ class ContaSQLite (contexto: Context): ContaDAO {
             cursor.getString(cursor.getColumnIndex(KEY_NOME_CONTA)),
             cursor.getString(cursor.getColumnIndex(KEY_SALDOINICIAL_CONTA))
         )
-    }
-
-    override fun leiaContaNome(nome: String): Conta {
-        val contaCursor = database.query(true, TABLE_CONTA,null,
-            "$KEY_NOME_CONTA = ?",arrayOf("$nome"),null, null,null,null)
-        return if (contaCursor.moveToFirst()) converteCursorConta(contaCursor)
-        else Conta()
     }
 }

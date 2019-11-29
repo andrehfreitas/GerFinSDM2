@@ -74,7 +74,7 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         val listaCategorias = arrayListOf<Categoria>()
 
         // Consulta categorias do banco de dados
-        val categorias = "SELECT * FROM $TABLE_CATEGORIA;"
+        val categorias = "SELECT * FROM $TABLE_CATEGORIA ORDER BY $KEY_NOME_CATEGORIA;"
         val categoriasCursor = database.rawQuery(categorias, null)
         while (categoriasCursor.moveToNext()) {
             listaCategorias.add(converteCursorCategoria(categoriasCursor))
@@ -84,7 +84,7 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
 
     override fun leiaNomeCategoria(): ArrayList<String> {
         val listaNomesCategorias = arrayListOf<String>()
-        val categorias = "SELECT * FROM ${TABLE_CATEGORIA};"
+        val categorias = "SELECT * FROM $TABLE_CATEGORIA ORDER BY $KEY_NOME_CATEGORIA;"
         val categoriaCursor = database.rawQuery(categorias, null)
         while (categoriaCursor.moveToNext()) {
             listaNomesCategorias.add(categoriaCursor.getString(1))

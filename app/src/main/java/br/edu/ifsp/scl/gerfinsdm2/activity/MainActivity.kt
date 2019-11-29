@@ -72,9 +72,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         }
         val total = saldototal - saldo
         tvSaldoReal.text = f.format(total)
-
-
     }
+
 
     // Tratamento de clique nos botões da MainActivity
     override fun onClick(v: View?) {

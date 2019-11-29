@@ -1,14 +1,17 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity.Conta
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.gerfinsdm2.R
 import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import kotlinx.android.synthetic.main.activity_cadconta.*
+import java.util.*
 
 class ContaCadastroActivity: AppCompatActivity() {
 
@@ -54,6 +57,27 @@ class ContaCadastroActivity: AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    // Mostra um calendário na tela
+    fun calendario(c: Calendar, inputData: TextView) {
+
+        val ano = c.get(Calendar.YEAR)
+        val mes = c.get(Calendar.MONTH)
+        val dia = c.get(Calendar.DAY_OF_MONTH)
+
+        inputData.setOnClickListener {
+            val dpd = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { datePicker, mAno, mMes, mDia ->
+                    // Tratamento da data: exemplo 1/11/2019 para 01/11/2019
+                    inputData.setText(if(mDia < 10){"0$mDia"}else{mDia.toString()}+"/"+
+                            if(mMes < 10){"0"+(mMes + 1).toString()}else{(mMes + 1).toString()}+"/"+
+                            if(mAno < 10){"0$mAno"}else{mAno.toString()})
+                }, ano, mes, dia
+            )
+            dpd.show()
+        }
     }
 }
 
