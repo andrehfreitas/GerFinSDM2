@@ -9,4 +9,5 @@ interface TransacaoDAO {
     fun leiaTransacao(where: String = ""): MutableList<Transacao>
     fun apagaTransacao(id: Int)
     fun buscaTransacao(transacao: Transacao):MutableList<Transacao>
+    fun buscaValorNoMes(tipoTransacao: String, mesAtual: String): Float
 }

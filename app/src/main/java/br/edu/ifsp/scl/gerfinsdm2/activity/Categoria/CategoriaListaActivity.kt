@@ -7,7 +7,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.ifsp.scl.gerfinsdm2.R
-import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaCadastroActivity
 import br.edu.ifsp.scl.gerfinsdm2.adapter.CategoriaAdapter
 import br.edu.ifsp.scl.gerfinsdm2.data.CategoriaSQLite
 import kotlinx.android.synthetic.main.activity_listacategoria.*
@@ -27,22 +26,24 @@ class CategoriaListaActivity : AppCompatActivity() {
         dao.verificaTabela()
     }
 
+    // Inflando o menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_adicionar, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
+            // Clique no ícone da barra adicionar uma nova categoria
             R.id.action_adicionar -> {
                 val i = Intent(applicationContext, CategoriaCadastroActivity::class.java)
                 startActivityForResult(i, 1)
             }
-
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onResume() {
         super.onResume()

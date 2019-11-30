@@ -78,10 +78,13 @@ class TransacaoDetalheActivity: AppCompatActivity() {
         }
     }
 
+
+    // Inflando o menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detalhe, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -96,16 +99,18 @@ class TransacaoDetalheActivity: AppCompatActivity() {
                 val descricao = etDetalheDescricaoTransacao.text.toString()
 
 
+                // Verificando se a data e valor da transação foram preenchidos
                 if (etDetalheValorTransacao.text.isNotEmpty() && etDetalheDataTransacao.text.isNotEmpty()) {
 
+                    // Estrutura de repetição para armazenar o id na categoria na tabela de transação
                     var categoria = 0
                     for (cat in listaCategorias) {
                         if (cat.nome == nomeCategoria) {
-                            // Recebe Id da categoria para armazenar na tabela de transação
                             categoria = cat.id_
                         }
                     }
 
+                    // Cria objeto de transação e seta os valores para armazenar no BD
                     val t = Transacao()
                     t.id_ = transacao.id_
                     t.tipo = tipo
@@ -115,6 +120,8 @@ class TransacaoDetalheActivity: AppCompatActivity() {
                     t.descricao = descricao
 
 
+                    // Estrutura de repetição para alterar o valor do saldo das contas na tabela de contas
+                    // quando efetuado o cadastro de uma nova transação
                     for (c in listaContas) {
                         if (c.nome == nomeConta) {
                             t.conta = c.id_
@@ -147,13 +154,11 @@ class TransacaoDetalheActivity: AppCompatActivity() {
                             break
                         }
                     }
-
                     daoTransacao.atualizaTransacao(t)
                     Toast.makeText(this, "Transação atualizada com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
-
                 } else {
-                    //Caso usuário não tenha preenchido o valor da transação é apresentado dialog_consulta_transacao
+                    //Caso usuário não tenha preenchido o valor e/ou a data da transação é apresentada mensagem de alerta
                     etDetalheValorTransacao.error = if (etDetalheValorTransacao.text.isEmpty())
                         "Digite o valor da transação" else null
                     etDetalheDataTransacao.error = if (etDetalheDataTransacao.text.isEmpty())
@@ -161,7 +166,7 @@ class TransacaoDetalheActivity: AppCompatActivity() {
                 }
             }
 
-            // Rotina para apagar uma transação
+            // Clique que chama a rotina para apagar uma transação
             R.id.action_apagar -> {
                 var conta = daoConta.leiaContaId(transacao.conta)
                 daoTransacao.apagaTransacao(transacao.id_)
@@ -201,6 +206,7 @@ class TransacaoDetalheActivity: AppCompatActivity() {
             dpd.show()
         }
     }
+
 
     // Formata um Double para duas casas decimais
     fun format(numero: Double): String? {

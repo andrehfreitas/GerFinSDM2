@@ -1,5 +1,18 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity
 
+/*
+    Trabalho final da disciplina Programação para Dispositivos Android 1
+
+    Alunos:
+            André Henrique de Freitas - SC3009408
+            Diego Maroldi Barreiros - SC3009262
+
+
+   OBSERVAÇÃO: O app poderia ser melhorado através de refatoração do código,
+   eliminando respetições e reduzindo código.
+ */
+
+
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +20,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import br.edu.ifsp.scl.gerfinsdm2.Funcoes.FormataMeuValor
 import br.edu.ifsp.scl.gerfinsdm2.R
 import br.edu.ifsp.scl.gerfinsdm2.activity.Categoria.CategoriaListaActivity
 import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaListaActivity
@@ -15,12 +29,15 @@ import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.conta_item.*
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
@@ -29,6 +46,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var transacoes: MutableList<Transacao>
     private lateinit var daoContas: ContaSQLite
     private lateinit var daoTransacao: TransacaoSQLite
+
+    //atributos do Gráfico
+    private lateinit var barChat: BarChart
+    private lateinit var tvMes: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +63,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         var btnCategorias = findViewById<Button>(R.id.btnCategorias)
         var btnTransacoes = findViewById<Button>(R.id.btnTransacao)
 
+        //findViewById Gráfico
+        barChat = findViewById(R.id.grafico)
+        tvMes = findViewById(R.id.tvMes)
+
         btnContas.setOnClickListener(this)
         btnCategorias.setOnClickListener(this)
         btnTransacoes.setOnClickListener(this)
@@ -50,7 +75,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onResume() {
         super.onResume()
+
+        //Chama função para criar gráfico
+        criaGrafico()
+
+
         val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+
 
         // Cálculo do somatório de saldos das contas e exibição na TextView
         contas = daoContas.leiaConta()
@@ -95,4 +126,68 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         }
     }
 
+
+    //Função para criar o gráfico
+    fun criaGrafico(){
+
+        // Formata a data para mes
+        var formataParaMes = SimpleDateFormat("MM")
+        var data = Date()
+        var formatoMes = formataParaMes.format(data)
+
+        //Meses do ano
+        val mes = mapOf<String, String>(
+            "01" to "Janeiro",
+            "02" to "Fevereiro",
+            "03" to "Março",
+            "04" to "Abril",
+            "05" to "Maio",
+            "06" to "Junho",
+            "07" to "Julho",
+            "08" to "Agosto",
+            "09" to "Setembro",
+            "10" to "Outubro",
+            "11" to "Novembro",
+            "12" to "Dezembro"
+        )
+
+        tvMes.text = "${mes.get(formatoMes)}: crédito e débito"
+
+        var valorCredito = daoTransacao.buscaValorNoMes("Crédito", formatoMes)
+        var valorDebito = daoTransacao.buscaValorNoMes("Débito", formatoMes)
+
+
+        // Valor do Saldocrédito
+        var barValorCredito = java.util.ArrayList<BarEntry>()
+        barValorCredito.add(BarEntry(0f, valorCredito))
+
+
+        // Valor do débito
+        var barValorDebito = java.util.ArrayList<BarEntry>()
+        barValorDebito.add(BarEntry(1f, valorDebito))
+
+
+        // Define os valores no gráfico com legenda
+        var barDataSetValorCredito = BarDataSet(barValorCredito, "Crédito")
+        var barDataSetValorDebito = BarDataSet(barValorDebito, "Débito")
+
+        // Define cor
+        barDataSetValorCredito.setColor(Color.BLUE)
+        barDataSetValorDebito.setColor(Color.RED)
+
+
+        var barData = BarData(barDataSetValorCredito, barDataSetValorDebito)
+        barData.setValueFormatter(FormataMeuValor())
+
+        // Configuração de formatação e exibição
+        barChat.axisLeft.valueFormatter = FormataMeuValor()
+        barChat.axisLeft.axisMinimum = 0f
+        barChat.xAxis.isEnabled = false
+        barChat.setDrawGridBackground(false)
+        barChat.axisRight.isEnabled = false
+        barChat.description.isEnabled = false
+        barChat.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        barChat.data = barData
+        barChat.invalidate()
+    }
 }

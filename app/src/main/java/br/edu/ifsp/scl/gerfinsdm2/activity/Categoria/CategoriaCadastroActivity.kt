@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.activity_cadcategoria.*
 
 class CategoriaCadastroActivity: AppCompatActivity() {
 
+
     private lateinit var dao: CategoriaSQLite
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +24,12 @@ class CategoriaCadastroActivity: AppCompatActivity() {
         dao = CategoriaSQLite(this)
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_cadastro, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -44,7 +48,7 @@ class CategoriaCadastroActivity: AppCompatActivity() {
                     Toast.makeText(this, "Categoria salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 }else {
-                    //Caso usuário não tenha preenchido o campo de nome da categoria é presentado dialog_consulta_transacao
+                    //Caso usuário não tenha preenchido o campo de nome da categoria é apresentada mensagem de alerta
                     etNomeCategoria.error = if (etNomeCategoria.text.isEmpty())
                         "Digite o nome da categoria" else null
                 }

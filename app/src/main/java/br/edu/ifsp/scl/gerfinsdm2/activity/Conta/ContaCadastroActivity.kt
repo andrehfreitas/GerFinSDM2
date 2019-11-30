@@ -24,10 +24,12 @@ class ContaCadastroActivity: AppCompatActivity() {
         dao = ContaSQLite(this)
     }
 
+    //Inflando o menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_cadastro, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     // Tratamento do evento de clique nos ícones da barra de menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -58,6 +60,7 @@ class ContaCadastroActivity: AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     // Mostra um calendário na tela
     fun calendario(c: Calendar, inputData: TextView) {

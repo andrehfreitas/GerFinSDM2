@@ -41,10 +41,13 @@ class ContaDetalheActivity: AppCompatActivity() {
         }
     }
 
+
+    // Inflando o menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detalhe, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -64,13 +67,13 @@ class ContaDetalheActivity: AppCompatActivity() {
 
                     Toast.makeText(this, "Conta atualizada com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
-
                 }else {
                     //Caso usuário não tenha preenchido todos os campos é apresentado dialog_consulta_transacao
                     etDetalheNomeConta.error = if (etDetalheNomeConta.text.isEmpty())
                         "Digite o nome da conta" else null
                 }
             }
+
 
             // Rotina para apagar uma conta
             R.id.action_apagar -> {

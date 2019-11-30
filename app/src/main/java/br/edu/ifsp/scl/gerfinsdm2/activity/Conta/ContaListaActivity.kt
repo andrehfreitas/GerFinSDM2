@@ -7,7 +7,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.ifsp.scl.gerfinsdm2.R
-import br.edu.ifsp.scl.gerfinsdm2.activity.Transacao.TransacaoCadastroActivity
 import br.edu.ifsp.scl.gerfinsdm2.adapter.ContaAdapter
 import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import kotlinx.android.synthetic.main.activity_listaconta.*
@@ -26,6 +25,8 @@ class ContaListaActivity : AppCompatActivity() {
         dao = ContaSQLite(this)
     }
 
+
+    //Inflando o menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_adicionar, menu)
         return super.onCreateOptionsMenu(menu)
@@ -33,7 +34,7 @@ class ContaListaActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
+        // Clique no ícone na barra de menu para adicionar uma nova Conta
             R.id.action_adicionar -> {
                 val i = Intent(applicationContext, ContaCadastroActivity::class.java)
                 startActivityForResult(i, 1)
@@ -41,6 +42,7 @@ class ContaListaActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onResume() {
         super.onResume()

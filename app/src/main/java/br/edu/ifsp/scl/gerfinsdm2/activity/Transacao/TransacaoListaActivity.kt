@@ -20,10 +20,11 @@ import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_listatransacao.*
+import kotlinx.android.synthetic.main.content_activity_listatransacao.*
 import kotlinx.android.synthetic.main.dialog_consulta_transacao.*
 import kotlinx.android.synthetic.main.dialog_consulta_transacao.view.*
-import kotlinx.android.synthetic.main.content_activity_listatransacao.*
 import java.util.*
+
 
 class TransacaoListaActivity : AppCompatActivity() {
 
@@ -51,15 +52,16 @@ class TransacaoListaActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            // Clique no ícone para efetuar consulta de transações
             R.id.action_consultar -> {
                 janelaBusca()
             }
 
+            // Clique no ícone para efetuar o cadastro de uma nova transação
             R.id.action_cadastrar -> {
                 val i = Intent(applicationContext, TransacaoCadastroActivity::class.java)
                 startActivityForResult(i, 1)
             }
-
         }
         return super.onOptionsItemSelected(item)
     }
@@ -77,6 +79,7 @@ class TransacaoListaActivity : AppCompatActivity() {
     }
 
 
+    // Função que faz a consulta de transações de acordo com os dados preenchidos pelo usuário
     fun janelaBusca() {
 
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_consulta_transacao, null)
@@ -122,7 +125,7 @@ class TransacaoListaActivity : AppCompatActivity() {
             } else if (mAlertDialog.rbCreditoDebito.isChecked) {
                 opTransacao = mAlertDialog.rbCreditoDebito.text.toString()
             }
-            //Recupero o id de cada campo
+            //Recupera o id de cada campo
             var idConta = daoConta.leiaContaNome(tipoConta)
             var idCategoria = daoCategoria.leiaCategoriaNome(tipoCategoria)
 

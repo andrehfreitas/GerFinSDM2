@@ -23,6 +23,7 @@ class CategoriaDetalheActivity: AppCompatActivity() {
         setContentView(R.layout.activity_detalhe_categoria)
         dao = CategoriaSQLite(this)
 
+
         // Chamada da activity de atualização e preenchimento das view com dados do banco
         if (intent.hasExtra("categoria")) {
             this.categoria = intent.getParcelableExtra("categoria") as Categoria
@@ -36,10 +37,12 @@ class CategoriaDetalheActivity: AppCompatActivity() {
         }
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detalhe, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -61,7 +64,7 @@ class CategoriaDetalheActivity: AppCompatActivity() {
                     finish()
 
                 } else {
-                    //Caso usuário não tenha preenchido todos os campos é apresentado dialog_consulta_transacao
+                    //Caso usuário não tenha preenchido todos os campos é apresentado mensagem de alerta
                     etDetalheNomeCategoria.error = if (etDetalheNomeCategoria.text.isEmpty())
                         "Digite o nome da categoria" else null
                 }

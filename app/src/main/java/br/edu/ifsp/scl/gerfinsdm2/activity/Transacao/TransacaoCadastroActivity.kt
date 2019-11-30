@@ -28,6 +28,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
     private lateinit var daoConta: ContaSQLite
     private lateinit var daoCategorias: CategoriaSQLite
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadtransacoes)
@@ -62,10 +63,12 @@ class TransacaoCadastroActivity : AppCompatActivity(){
         spinnerCategoria.adapter = arrayAdapterCategoria
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_cadastro, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -83,8 +86,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
 
                 // Verificando se o usuário preencheu o valor da transação, único campo obrigatório
                 // sem valor default. Caso positivo realiza operação de inclusão de transação.
-                if (etValorTransacao.text.isNotEmpty()) {
-
+                if (etValorTransacao.text.isNotEmpty()){
                     var conta = 0
                     for (c in listaContas) {
                         if (c.nome == nomeConta) {
@@ -111,7 +113,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                         }
                     }
 
-                    // Cria objeto de transação e seta os valores
+                    // Cria objeto de transação e seta os valores para armazenar no BD
                     val t = Transacao()
                     t.tipo = tipo
                     t.conta = conta
@@ -156,7 +158,6 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                                     break
                                 }
                             }
-
                             dao.criaTransacao(novaTransacao)
                         }
                     }
@@ -172,6 +173,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     // Mostra um calendário na tela
     fun calendario(c: Calendar, inputData: TextView) {

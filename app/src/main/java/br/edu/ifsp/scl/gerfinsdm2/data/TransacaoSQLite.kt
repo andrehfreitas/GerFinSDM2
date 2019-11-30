@@ -180,4 +180,23 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         }
         return listaTransacao
     }
+
+
+    // Função para gráfico
+    override fun buscaValorNoMes(tipoTransacao: String, mesAtual: String): Float {
+
+        var sql = "SELECT SUM(valor) as valor FROM transacao WHERE tipo = '${tipoTransacao}' AND SUBSTR (data, 4, 2) = '${mesAtual}' GROUP BY tipo"
+        var valor = ""
+
+        val valorCursor = database.rawQuery(sql, null)
+
+        while (valorCursor.moveToNext()){
+            valor = valorCursor.getString(valorCursor.getColumnIndex("valor"))
+        }
+
+        Log.d("Valor", valor)
+
+        return if (valor.isEmpty()) { 0f }else{ valor.toFloat()}
+    }
+
 }
