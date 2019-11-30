@@ -61,7 +61,7 @@ class CategoriaDetalheActivity: AppCompatActivity() {
                     finish()
 
                 } else {
-                    //Caso usuário não tenha preenchido todos os campos é apresentado consulta_transacao
+                    //Caso usuário não tenha preenchido todos os campos é apresentado dialog_consulta_transacao
                     etDetalheNomeCategoria.error = if (etDetalheNomeCategoria.text.isEmpty())
                         "Digite o nome da categoria" else null
                 }

@@ -20,8 +20,8 @@ import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
 import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_listatransacao.*
-import kotlinx.android.synthetic.main.consulta_transacao.*
-import kotlinx.android.synthetic.main.consulta_transacao.view.*
+import kotlinx.android.synthetic.main.dialog_consulta_transacao.*
+import kotlinx.android.synthetic.main.dialog_consulta_transacao.view.*
 import kotlinx.android.synthetic.main.content_activity_listatransacao.*
 import java.util.*
 
@@ -41,16 +41,10 @@ class TransacaoListaActivity : AppCompatActivity() {
         setSupportActionBar(toolbar3)
 
         dao = TransacaoSQLite(this)
-
-        // Evento de clique no Floating Action Button
-        fabtransacoes.setOnClickListener { view ->
-            val i = Intent(applicationContext, TransacaoCadastroActivity::class.java)
-            startActivityForResult(i, 1)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_consulta, menu)
+        menuInflater.inflate(R.menu.menu_transacao, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -59,6 +53,11 @@ class TransacaoListaActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_consultar -> {
                 janelaBusca()
+            }
+
+            R.id.action_cadastrar -> {
+                val i = Intent(applicationContext, TransacaoCadastroActivity::class.java)
+                startActivityForResult(i, 1)
             }
 
         }
@@ -75,13 +74,12 @@ class TransacaoListaActivity : AppCompatActivity() {
         recyclerViewTransacoes.adapter = transacaoAdapter
         recyclerViewTransacoes.layoutManager = LinearLayoutManager(this)
         recyclerViewTransacoes.smoothScrollToPosition(listaTransacoes.size)
-
     }
 
 
     fun janelaBusca() {
 
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.consulta_transacao, null)
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_consulta_transacao, null)
         val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
         val mAlertDialog = mBuilder.show()
         val c = Calendar.getInstance()

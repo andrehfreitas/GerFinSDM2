@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.scl.gerfinsdm2.R
 import br.edu.ifsp.scl.gerfinsdm2.activity.Conta.ContaDetalheActivity
+import br.edu.ifsp.scl.gerfinsdm2.data.ContaSQLite
+import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import kotlinx.android.synthetic.main.conta_item.view.*
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ContaAdapter(private val context: Context, private var contaList: List<Conta>):
     RecyclerView.Adapter<ContaAdapter.ContaViewHolder>() {

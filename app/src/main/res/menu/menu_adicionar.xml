@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_salvar"
+        android:id="@+id/action_adicionar"
         android:orderInCategory="100"
         android:title="Salvar"
-        android:icon="@drawable/ic_save_white_48dp"
+        android:icon="@drawable/ic_add_circle_white_48dp"
         app:showAsAction="always" />
 </menu>

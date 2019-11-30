@@ -11,5 +11,6 @@ interface CategoriaDAO{
     fun leiaCategoriaNome(nome: String): Categoria
     fun leiaCategoriaId(id: Int): Categoria
     fun apagaCategoria(id: Int)
+    fun verificaTabela()
 
 }

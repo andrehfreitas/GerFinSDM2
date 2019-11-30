@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_cadastrar"
+        android:orderInCategory="100"
+        android:title="Consultar"
+        android:icon="@drawable/ic_add_circle_white_48dp"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/action_consultar"
         android:orderInCategory="100"
         android:title="Consultar"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_search_white_48dp"
         app:showAsAction="always"/>
 
 </menu>

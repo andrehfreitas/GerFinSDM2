@@ -45,7 +45,9 @@ class TransacaoCadastroActivity : AppCompatActivity(){
         listaCategorias = daoCategorias.leiaCategoria()
 
         listaNomeContas = daoConta.leiaNomeConta()
+        listaNomeContas.add(0, "Selecione a conta")
         listaNomeCategorias = daoCategorias.leiaNomeCategoria()
+        listaNomeCategorias.add(0, "Selecione a categoria")
 
         // Preenchendo Spinner com o nome das Contas
         val spinnerConta = spnContaTransacao
@@ -162,7 +164,7 @@ class TransacaoCadastroActivity : AppCompatActivity(){
                     Toast.makeText(this, "Transação salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    //Caso usuário não tenha preenchido o valor da transação é apresentado consulta_transacao
+                    //Caso usuário não tenha preenchido o valor da transação é apresentado dialog_consulta_transacao
                     etValorTransacao.error = if (etValorTransacao.text.isEmpty())
                         "Digite o valor da transação" else null
                 }

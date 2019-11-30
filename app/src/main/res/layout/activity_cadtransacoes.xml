@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Tipo"
         android:textSize="19dp"
-        />
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnTipoTransacao"
@@ -26,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Conta"
-        android:textSize="19dp"/>
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnContaTransacao"
@@ -39,7 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Categoria"
-        android:textSize="19dp"/>
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnCategoriaTransacao"
@@ -57,13 +59,26 @@
         android:inputType="none"
         android:focusableInTouchMode="false"/>
 
-    <EditText
-        android:id="@+id/etValorTransacao"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:hint="Valor"
-        android:inputType="numberDecimal"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$"
+            android:textSize="19dp"
+            android:textColor="@color/design_default_color_on_secondary"/>
+
+        <EditText
+            android:id="@+id/etValorTransacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:hint="Valor"
+            android:inputType="numberDecimal"/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etDescricaoTransacao"
@@ -79,7 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="Transação se repetirá"
-        android:textSize="19dp" />
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,7 +114,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19dp"
-            android:text="vezes a cada"/>
+            android:text="vezes a cada"
+            android:textColor="@color/design_default_color_on_secondary"/>
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +134,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19dp"
-            android:text="dias"/>
+            android:text="dias"
+            android:textColor="@color/design_default_color_on_secondary"/>
     </LinearLayout>
 
 

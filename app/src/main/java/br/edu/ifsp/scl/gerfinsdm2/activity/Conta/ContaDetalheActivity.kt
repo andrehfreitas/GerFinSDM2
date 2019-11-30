@@ -66,7 +66,7 @@ class ContaDetalheActivity: AppCompatActivity() {
                     finish()
 
                 }else {
-                    //Caso usuário não tenha preenchido todos os campos é apresentado consulta_transacao
+                    //Caso usuário não tenha preenchido todos os campos é apresentado dialog_consulta_transacao
                     etDetalheNomeConta.error = if (etDetalheNomeConta.text.isEmpty())
                         "Digite o nome da conta" else null
                 }

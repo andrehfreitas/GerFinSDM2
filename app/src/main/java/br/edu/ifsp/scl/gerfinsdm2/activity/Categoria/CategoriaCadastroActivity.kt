@@ -44,7 +44,7 @@ class CategoriaCadastroActivity: AppCompatActivity() {
                     Toast.makeText(this, "Categoria salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 }else {
-                    //Caso usuário não tenha preenchido o campo de nome da categoria é presentado consulta_transacao
+                    //Caso usuário não tenha preenchido o campo de nome da categoria é presentado dialog_consulta_transacao
                     etNomeCategoria.error = if (etNomeCategoria.text.isEmpty())
                         "Digite o nome da categoria" else null
                 }

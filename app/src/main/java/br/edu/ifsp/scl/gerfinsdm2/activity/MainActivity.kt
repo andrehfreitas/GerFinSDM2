@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.gerfinsdm2.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,9 +16,11 @@ import br.edu.ifsp.scl.gerfinsdm2.data.TransacaoSQLite
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.conta_item.*
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
@@ -42,8 +45,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         btnContas.setOnClickListener(this)
         btnCategorias.setOnClickListener(this)
         btnTransacoes.setOnClickListener(this)
-
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -53,7 +56,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         contas = daoContas.leiaConta()
         val saldototal = contas.sumByDouble { it.saldoinicial.toDouble() }
         tvTotalContas.text = f.format(saldototal)
-
 
 
         // Cálculo do saldo total das contas sem considerar transações futuras
@@ -72,6 +74,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         }
         val total = saldototal - saldo
         tvSaldoReal.text = f.format(total)
+
+
+        // Formata cor do texto verificando se o saldo é positivo ou negativo
+        if (total < 0.0) tvSaldoReal.setTextColor(Color.RED)
+        else tvSaldoReal.setTextColor(Color.BLUE)
+
+        // Formata cor do texto verificando se o saldo é positivo ou negativo
+        if (total < 0.0) tvTotalContas.setTextColor(Color.RED)
+        else tvTotalContas.setTextColor(Color.BLUE)
     }
 
 

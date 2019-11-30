@@ -20,7 +20,7 @@ import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 class ContaSQLite (context: Context): ContaDAO {
 
     object Constantes {
-        val DATABASE_NAME = "gerfin4.db"
+        val DATABASE_NAME = "gerfinteste.db"
         val TABLE_CONTA = "contas"
         val KEY_CODIGO_CONTA = "codigo"
         val KEY_NOME_CONTA = "nome"

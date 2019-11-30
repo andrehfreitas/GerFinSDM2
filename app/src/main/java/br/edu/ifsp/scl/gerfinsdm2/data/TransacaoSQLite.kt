@@ -23,7 +23,7 @@ import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 class TransacaoSQLite (contexto: Context): TransacaoDAO {
 
     object Constantes {
-        val DATABASE_NAME = "gerfin4.db"
+        val DATABASE_NAME = "gerfinteste.db"
         val TABLE_TRANSACAO = "transacao"
         val KEY_CODIGO_TRANSACAO = "codigo"
         val KEY_TIPO_TRANSACAO = "tipo"
@@ -129,8 +129,8 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         )
     }
 
+    // Função para efetuar as consultas das transações no BD
     override fun buscaTransacao(transacao: Transacao): MutableList<Transacao> {
-
         var listaTransacao = arrayListOf<Transacao>()
 
         //Verificação
@@ -149,17 +149,12 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         var tipoCreditoDebito = transacao.tipo.split(" e ")
 
         if ((tipo) and (conta) and (categoria) and (inicio) and (fim)) {
-
             listaTransacao = leiaTransacao()
-
         } else {
-
             //Adiciona esse parametro para poder realizar busca por qualquer campo
             var sql = " 1 = 1"
-
             //Verifica quais campos devem ser inseridos na query
             if (!tipo) {
-
                 if (transacao.tipo.equals("Crédito e Débito")) {
                     sql += " AND tipo in ('${tipoCreditoDebito[0]}','${tipoCreditoDebito[1]}')"
                 } else {
@@ -177,15 +172,12 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
                 sql += " AND (SUBSTR (data, 7) || SUBSTR (data, 4, 2) || SUBSTR (data, 1, 2)) \n" +
                         "BETWEEN (SUBSTR ('${transacao.data}', 7) || SUBSTR ('${transacao.data}', 4, 2) || SUBSTR ('${transacao.data}', 1, 2)) \n" +
                         "AND (SUBSTR ('${transacao.periodicidade}', 7) || SUBSTR ('${transacao.periodicidade}', 4, 2) || SUBSTR ('${transacao.periodicidade}', 1, 2))"
-
             }
 
             Log.d("Query", sql)
 
-
             listaTransacao = leiaTransacao(sql)
         }
-
         return listaTransacao
     }
 }

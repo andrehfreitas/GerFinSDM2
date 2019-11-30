@@ -14,7 +14,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data início"/>
+        android:text="Data início"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etAlertaDataInicio"
@@ -29,7 +30,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data fim"/>
+        android:text="Data fim"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etAlertaDataFim"
@@ -44,7 +46,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Natureza da transação"/>
+        android:text="Natureza da transação"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <RadioGroup
         android:id="@+id/rgAlertaOpcao"
@@ -56,25 +59,29 @@
             android:id="@+id/rbCreditoDebito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crédito e Débito" />
+            android:text="Crédito e Débito"
+            android:textColor="@color/design_default_color_on_secondary"/>
 
         <RadioButton
             android:id="@+id/rbCredito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crédito" />
+            android:text="Crédito"
+            android:textColor="@color/design_default_color_on_secondary"/>
 
         <RadioButton
             android:id="@+id/rbDebito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Débito" />
+            android:text="Débito"
+            android:textColor="@color/design_default_color_on_secondary"/>
     </RadioGroup>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo da transação"/>
+        android:text="Tipo da transação"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnAlertaCategoria"
@@ -83,14 +90,21 @@
         android:layout_marginBottom="18dp"/>
 
     <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancelar" />
-
-    <Button
         android:id="@+id/btnBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:background="@color/colorPrimary"
+        android:text="Buscar"
+        android:textColor="@color/textobotao"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:layout_marginTop="6dp"
+        android:textStyle="bold"
+        android:textColor="@color/textobotao"
+        android:background="@color/colorPrimary"/>
 </LinearLayout>

@@ -7,12 +7,26 @@
     android:padding="16dp"
     tools:context=".activity.Categoria.CategoriaCadastroActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome da categoria"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
+
     <EditText
         android:id="@+id/etDetalheNomeCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:hint="Nome da Categoria"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descrição"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etDetalheDescricaoCategoria"

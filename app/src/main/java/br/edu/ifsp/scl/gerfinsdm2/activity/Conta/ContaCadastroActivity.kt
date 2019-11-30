@@ -48,7 +48,7 @@ class ContaCadastroActivity: AppCompatActivity() {
                     Toast.makeText(this, "Conta salva com sucesso!", Toast.LENGTH_SHORT).show()
                     finish()
                 }else {
-                    //Caso usuário não tenha preenchido todos os campos é apresentado consulta_transacao
+                    //Caso usuário não tenha preenchido todos os campos é apresentado dialog_consulta_transacao
                     etNomeConta.error = if (etNomeConta.text.isEmpty())
                         "Digite o nome da conta" else null
                     etSaldoConta.error = if (etSaldoConta.text.isEmpty())

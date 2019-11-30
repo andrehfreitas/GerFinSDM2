@@ -7,12 +7,26 @@
     android:padding="16dp"
     tools:context=".activity.Conta.ContaDetalheActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
+
     <EditText
         android:id="@+id/etDetalheNomeConta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:hint="Nome da Conta"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saldo"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etDetalheSaldoConta"
@@ -27,6 +41,7 @@
         android:layout_marginTop="40dp"
         android:textStyle="bold"
         android:textSize="20dp"
+        android:textColor="@color/design_default_color_on_secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text='Atenção: Alteração do saldo da conta não permitida. Caso o saldo da conta esteja incorreto, cadastre uma transação na categoria "Ajuste de Saldo"' />

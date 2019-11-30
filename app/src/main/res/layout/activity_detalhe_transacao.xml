@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tipo"
-        android:textSize="19dp"/>
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnDetalheTipoTransacao"
@@ -25,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Conta"
-        android:textSize="19dp"/>
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnDetalheContaTransacao"
@@ -38,7 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Categoria"
-        android:textSize="19dp"/>
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <Spinner
         android:id="@+id/spnDetalheCategoriaTransacao"
@@ -46,6 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:hint="Categoria da transação"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etDetalheDataTransacao"
@@ -56,13 +66,40 @@
         android:inputType="none"
         android:focusableInTouchMode="false"/>
 
-    <EditText
-        android:id="@+id/etDetalheValorTransacao"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:hint="Valor"
-        android:inputType="numberDecimal"/>
+        android:text="Valor"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$"
+            android:textSize="19dp"
+            android:textColor="@color/design_default_color_on_secondary"/>
+
+
+        <EditText
+            android:id="@+id/etDetalheValorTransacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:hint="Valor"
+            android:inputType="numberDecimal"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descrição"
+        android:textSize="19dp"
+        android:textColor="@color/design_default_color_on_secondary"/>
 
     <EditText
         android:id="@+id/etDetalheDescricaoTransacao"
@@ -70,7 +107,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Descrição" />
+        android:inputType="textMultiLine"/>
 
 </LinearLayout>

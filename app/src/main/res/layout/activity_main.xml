@@ -12,18 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
-        android:text="Saldo Total das Contas"
+        android:text="Saldo total das contas"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_on_secondary"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvTotalContas"
+        android:id="@+id/tvSaldoReal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:background="#EBEBEB"
         android:text="Saldo Total"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_on_secondary"
@@ -35,22 +34,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
-        android:text="Saldo total hoje \n (Não considera transações futuras)"
+        android:text="Saldo total após efetivação \n de todas as transações futuras"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvSaldoReal"
+        android:id="@+id/tvTotalContas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:background="#EBEBEB"
         android:text="Saldo Total"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="25sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -58,24 +56,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:shadowColor="#303F9F"
         android:text="Contas"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/textobotao"
+        android:background="@color/colorPrimary"/>
 
     <Button
         android:id="@+id/btnCategorias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
         android:text="Categorias"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@color/textobotao"
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/btnTransacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
         android:text="Transacões \n (Cadastro/Consulta)"
-        android:textColor="@color/design_default_color_on_secondary"
+        android:textColor="@color/textobotao"
         android:textSize="24sp"
         android:textStyle="bold" />
 

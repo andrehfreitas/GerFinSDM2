@@ -20,7 +20,7 @@ import br.edu.ifsp.scl.gerfinsdm2.model.Categoria
 class CategoriaSQLite (contexto: Context): CategoriaDAO {
 
     object Constantes{
-        val DATABASE_NAME = "gerfin4.db"
+        val DATABASE_NAME = "gerfinteste.db"
         val TABLE_CATEGORIA = "categoria"
         val KEY_CODIGO_CATEGORIA = "codigo"
         val KEY_NOME_CATEGORIA = "nome"
@@ -42,12 +42,24 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
 
         // Criando a tabela categoria
         try {
-            database.execSQL("PRAGMA foreign_keys=ON")
             database.execSQL(CREATE_TABLE_CATEGORIA)
         }
 
         catch (e: SQLException){
             Log.e(contexto.getString(R.string.app_name),"Problema com a criação da tabela!")
+        }
+    }
+
+
+    // Verifica se a tabela está vazia e insere uma categoria para Ajuste de Saldo da Conta
+    override fun verificaTabela() {
+        val cursor = database.rawQuery ("SELECT EXISTS (SELECT 1 FROM $TABLE_CATEGORIA)", null)
+        if (cursor != null) {
+            cursor.moveToFirst()
+            if (cursor.getInt(0) == 0) {
+                database.execSQL("INSERT INTO $TABLE_CATEGORIA ($KEY_NOME_CATEGORIA, $KEY_DESCRICAO_CATEGORIA) " +
+                        "VALUES ('Ajuste de Saldo', 'Usado para realizar ajuste de saldo de uma conta quando está incoerente')")
+            }
         }
     }
 

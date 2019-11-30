@@ -14,7 +14,6 @@ import br.edu.ifsp.scl.gerfinsdm2.model.Categoria
 import br.edu.ifsp.scl.gerfinsdm2.model.Conta
 import br.edu.ifsp.scl.gerfinsdm2.model.Transacao
 import kotlinx.android.synthetic.main.activity_detalhe_transacao.*
-import java.text.NumberFormat
 import java.util.*
 
 
@@ -63,8 +62,6 @@ class TransacaoDetalheActivity: AppCompatActivity() {
         if (intent.hasExtra("transacao")) {
             this.transacao = intent.getParcelableExtra("transacao") as Transacao
 
-            val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
-
             val tipo = this.findViewById<Spinner>(R.id.spnDetalheTipoTransacao)
             val conta = this.findViewById<Spinner>(R.id.spnDetalheContaTransacao)
             val categoria = this.findViewById<Spinner>(R.id.spnDetalheCategoriaTransacao)
@@ -76,7 +73,7 @@ class TransacaoDetalheActivity: AppCompatActivity() {
             conta.setSelection(arrayAdapterConta.getPosition(daoConta.leiaContaId(transacao.conta).toString()))
             categoria.setSelection(arrayAdapterCategoria.getPosition(daoCategorias.leiaCategoriaId(transacao.categoria).toString()))
             data.setText(transacao.data)
-            valor.setText(transacao.valor)
+            valor.setText(format(transacao.valor.toDouble()))
             descricao.setText(transacao.descricao)
         }
     }
@@ -156,7 +153,7 @@ class TransacaoDetalheActivity: AppCompatActivity() {
                     finish()
 
                 } else {
-                    //Caso usuário não tenha preenchido o valor da transação é apresentado consulta_transacao
+                    //Caso usuário não tenha preenchido o valor da transação é apresentado dialog_consulta_transacao
                     etDetalheValorTransacao.error = if (etDetalheValorTransacao.text.isEmpty())
                         "Digite o valor da transação" else null
                     etDetalheDataTransacao.error = if (etDetalheDataTransacao.text.isEmpty())
@@ -203,6 +200,11 @@ class TransacaoDetalheActivity: AppCompatActivity() {
             )
             dpd.show()
         }
+    }
+
+    // Formata um Double para duas casas decimais
+    fun format(numero: Double): String? {
+        return String.format("%.2f", numero)
     }
 
 }
