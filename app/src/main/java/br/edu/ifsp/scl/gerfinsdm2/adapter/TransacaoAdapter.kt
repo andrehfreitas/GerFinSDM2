@@ -54,6 +54,7 @@ class TransacaoAdapter(private val context: Context,
         val textViewTransacaoData = itemView.transacao_data
         val textViewTransacaoValor = itemView.transacao_valor
 
+        // Preenchendo as view com os dados
         fun bindView(transacao: Transacao){
 
             val daoConta = ContaSQLite(itemView.context)
@@ -74,6 +75,7 @@ class TransacaoAdapter(private val context: Context,
             } else{
                 imageViewTransacaoTipo.setImageResource(R.drawable.icone_transacao_item_receita)
             }
+
 
             // Tratamento do evento de click em um item da lista
             itemView.setOnClickListener {

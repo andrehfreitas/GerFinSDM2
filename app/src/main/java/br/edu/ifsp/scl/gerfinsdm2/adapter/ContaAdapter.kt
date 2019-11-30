@@ -41,10 +41,12 @@ class ContaAdapter(private val context: Context, private var contaList: List<Con
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContaViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.conta_item, parent, false)
         return ContaViewHolder(view)
     }
+
 
     override fun getItemCount() = contaList.size
 

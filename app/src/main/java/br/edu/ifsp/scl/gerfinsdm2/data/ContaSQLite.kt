@@ -98,6 +98,7 @@ class ContaSQLite (context: Context): ContaDAO {
     }
 
 
+    // Lê a Conta passado o Id dela
     override fun leiaContaId(id: Int): Conta {
         val contaCursor = database.query(
             true, TABLE_CONTA, null,
@@ -108,11 +109,13 @@ class ContaSQLite (context: Context): ContaDAO {
     }
 
 
+    // Apaga uma conta
     override fun apagaConta(id: Int) {
         database.delete(TABLE_CONTA, "$KEY_CODIGO_CONTA = ?", arrayOf(id.toString()))
     }
 
 
+    // Lê a conta pelo passando o nome como parâmetro
     override fun leiaContaNome(nome: String): Conta {
         val contaCursor = database.query(
             true, TABLE_CONTA, null,
@@ -123,7 +126,7 @@ class ContaSQLite (context: Context): ContaDAO {
     }
 
 
-    // Converte uma linha do Cursor para uma objeto da classe Conta
+    // Converte uma linha do Cursor para um objeto da classe Conta
     private fun converteCursorConta(cursor: Cursor): Conta {
         return Conta(
             cursor.getInt(cursor.getColumnIndex(KEY_CODIGO_CONTA)),

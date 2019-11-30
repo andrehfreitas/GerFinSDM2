@@ -33,6 +33,7 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
                 "${KEY_DESCRICAO_CATEGORIA} TEXT);"
     }
 
+
     // Referência para o Banco de Dados
     val database: SQLiteDatabase
 
@@ -51,7 +52,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
     }
 
 
-    // Verifica se a tabela está vazia e insere uma categoria para Ajuste de Saldo da Conta
+    // Verifica se a tabela está vazia e insere uma categoria inicial
+    // para Ajuste de Saldo da Conta
     override fun verificaTabela() {
         val cursor = database.rawQuery ("SELECT EXISTS (SELECT 1 FROM $TABLE_CATEGORIA)", null)
         if (cursor != null) {
@@ -63,6 +65,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         }
     }
 
+
+    // Insere dados de categoria cadastrada
     override fun criaCategoria(cat: Categoria){
         // Fazendo o mapeamento de atributo-valor
         val values = ContentValues()
@@ -73,6 +77,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         database.insert(TABLE_CATEGORIA, null, values)
     }
 
+
+    // Atualiza uma categoria
     override fun atualizaCategoria(categoria: Categoria) {
         val values = ContentValues()
         values.put(KEY_NOME_CATEGORIA, categoria.nome)
@@ -82,6 +88,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         database.update(TABLE_CATEGORIA, values,"$KEY_CODIGO_CATEGORIA = ?", arrayOf(categoria.id_.toString()))
     }
 
+
+    // Lê as categorias cadastrada e retorna um array de categorias
     override fun leiaCategoria(): ArrayList<Categoria> {
         val listaCategorias = arrayListOf<Categoria>()
 
@@ -94,6 +102,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         return listaCategorias
     }
 
+
+    // Lê as categorias e retorna um array apenas com a coluna nome do BD
     override fun leiaNomeCategoria(): ArrayList<String> {
         val listaNomesCategorias = arrayListOf<String>()
         val categorias = "SELECT * FROM $TABLE_CATEGORIA ORDER BY $KEY_NOME_CATEGORIA;"
@@ -104,6 +114,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         return listaNomesCategorias
     }
 
+
+    // Lê a categoria pelo ID e retorna a Categoria
     override fun leiaCategoriaId(id: Int): Categoria {
         val categoriaCursor = database.query(true, TABLE_CATEGORIA,null,
             "${KEY_CODIGO_CATEGORIA} = ?",arrayOf("$id"),null, null,null,null)
@@ -111,9 +123,12 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         else Categoria()
     }
 
+
+    // Apaga uma categoria cadastrada
     override fun apagaCategoria(id: Int) {
         database.delete(TABLE_CATEGORIA, "${KEY_CODIGO_CATEGORIA} = ?", arrayOf(id.toString()))
     }
+
 
     // Converte uma linha do Cursor para uma objeto da classe Categoria
     private fun converteCursorCategoria(cursor: Cursor): Categoria {
@@ -124,6 +139,8 @@ class CategoriaSQLite (contexto: Context): CategoriaDAO {
         )
     }
 
+
+    // Lê a categoria pelo nome e retorna a Categoria
     override fun leiaCategoriaNome(nome: String): Categoria {
         val categoriaCursor = database.query(true, TABLE_CATEGORIA, null,
             "${KEY_NOME_CATEGORIA} = ?",arrayOf("$nome"),null, null,null,null)

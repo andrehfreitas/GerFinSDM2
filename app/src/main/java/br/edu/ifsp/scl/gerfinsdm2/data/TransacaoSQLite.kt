@@ -61,6 +61,8 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         }
     }
 
+
+    // Cadastra uma transação no BD
     override fun criaTransacao(transacao: Transacao) {
         val values = ContentValues()
 
@@ -73,6 +75,7 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
 
         database.insert(TABLE_TRANSACAO, null, values)
     }
+
 
     // Operação de atualização de uma transação do BD
     override fun atualizaTransacao(transacao: Transacao) {
@@ -93,11 +96,11 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         )
     }
 
+
     // Apaga transação pelo Id do BD
     override fun apagaTransacao(id: Int) {
         database.delete(TABLE_TRANSACAO, "$KEY_CODIGO_TRANSACAO = ?", arrayOf(id.toString()))
     }
-
 
 
     // Retorna todas transacoes do banco de dados
@@ -116,6 +119,7 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
         return listaTransacoes
     }
 
+
     // Converte uma linha do Cursor para uma objeto de Transacao
     private fun converteCursorTransacao(cursor: Cursor): Transacao {
         return Transacao(
@@ -128,6 +132,7 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
             cursor.getString(cursor.getColumnIndex(KEY_DESCRICAO_TRANSACAO))
         )
     }
+
 
     // Função para efetuar as consultas das transações no BD
     override fun buscaTransacao(transacao: Transacao): MutableList<Transacao> {
@@ -182,7 +187,7 @@ class TransacaoSQLite (contexto: Context): TransacaoDAO {
     }
 
 
-    // Função para gráfico
+    // Função que busca transações de débito e crédito para montar um gráfico
     override fun buscaValorNoMes(tipoTransacao: String, mesAtual: String): Float {
 
         var sql = "SELECT SUM(valor) as valor FROM transacao WHERE tipo = '${tipoTransacao}' AND SUBSTR (data, 4, 2) = '${mesAtual}' GROUP BY tipo"

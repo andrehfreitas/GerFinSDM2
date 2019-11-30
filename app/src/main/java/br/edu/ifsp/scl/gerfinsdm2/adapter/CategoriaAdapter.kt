@@ -30,10 +30,12 @@ class CategoriaAdapter(private val context: Context, private var categoriaList: 
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriaViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.categoria_item, parent, false)
         return CategoriaViewHolder(view)
     }
+
 
     override fun getItemCount() = categoriaList.size
 
