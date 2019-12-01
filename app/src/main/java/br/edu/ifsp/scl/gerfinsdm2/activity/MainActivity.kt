@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         var btnTransacoes = findViewById<Button>(R.id.btnTransacao)
 
         //findViewById Gráfico
-        barChat = findViewById(R.id.grafico)
+        barChat = this.findViewById(R.id.grafico)
         tvMes = findViewById(R.id.tvMes)
 
         btnContas.setOnClickListener(this)

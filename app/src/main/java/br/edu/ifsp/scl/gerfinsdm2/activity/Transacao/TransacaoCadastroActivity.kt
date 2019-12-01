@@ -46,8 +46,6 @@ class TransacaoCadastroActivity : AppCompatActivity(){
         listaCategorias = daoCategorias.leiaCategoria()
 
         listaNomeContas = daoConta.leiaNomeConta()
-        listaNomeContas.add(0, "Selecione a conta")
-        listaNomeCategorias = daoCategorias.leiaNomeCategoria()
         listaNomeCategorias.add(0, "Selecione a categoria")
 
         // Preenchendo Spinner com o nome das Contas
